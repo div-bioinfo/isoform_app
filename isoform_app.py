@@ -885,7 +885,7 @@ if uploaded_files:
             }
 
             # 5. Plot
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(5.5, 2.4))
             fig.patch.set_facecolor('#f7f7f7')
             ax.set_facecolor('#f7f7f7')
 
@@ -906,23 +906,28 @@ if uploaded_files:
                             ax.text(
                                 bar.get_x() + bar.get_width() / 2,
                                 bar.get_y() + height / 2,
-                                f"{height:.1f}%",
+                                f"{height:.0f}%",
                                 ha="center", va="center", fontsize=9, color="black"
                             )
                     bottom += values
 
             # 6. Final touches
-            ax.set_ylabel("Percentage", fontsize=11)
-            ax.set_title("Isoform Classification Against Reference", fontsize=13, fontweight='bold')
+            ax.set_ylabel("Percentage", fontsize=10)
+            ax.set_title("Isoform Classification Against Reference", fontsize=12, fontweight='bold')
             ax.set_ylim(0, 100)
             ax.set_xticks(x_positions)
-            ax.set_xticklabels(pivot_percent.index, fontsize=10)
+            ax.set_xticklabels(pivot_percent.index, fontsize=9)
+            ax.tick_params(axis='y', labelsize=8)
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
-            ax.legend(title="Isoform Status", title_fontsize=10, fontsize=9, frameon=False, loc='upper left', bbox_to_anchor=(1.02, 1))
+            ax.legend(title="Isoform Status", title_fontsize=9, fontsize=8, frameon=False, loc='upper left', bbox_to_anchor=(1.02, 1))
             fig.tight_layout()
 
-            st.pyplot(fig)
+            col1, col2, col3 = st.columns([1, 5, 1])
+            with col2:
+            
+
+                st.pyplot(fig)
 
             # --- Display per-tool tables in tabs ---
             st.markdown("### 📋 Isoform Classification Summary (by Tool)")
