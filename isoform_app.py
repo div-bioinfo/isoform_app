@@ -885,7 +885,7 @@ if uploaded_files:
             }
 
             # 5. Plot
-            fig, ax = plt.subplots(figsize=(5.5, 2.4))
+            fig, ax = plt.subplots(figsize=(6, 3))
             fig.patch.set_facecolor('#f7f7f7')
             ax.set_facecolor('#f7f7f7')
 
