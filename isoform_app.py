@@ -517,7 +517,7 @@ st.markdown(
             rgba(255,255,255,0.4),
             rgba(255,255,255,0.4)
             ),
-            url('https://i.postimg.cc/wx2XcrmW/3d-representation-dna-1.jpg') no-repeat center center fixed;
+            url('https://github.com/div-bioinfo/isoform_app/blob/main/background.jpg?raw=true') no-repeat center center fixed;
         background-size: cover;
         font-family: 'Poppins', sans-serif;
         color: #2C2C2C; /*deep grey for general text*/
