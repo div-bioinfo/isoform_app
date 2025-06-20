@@ -483,6 +483,25 @@ def plot_exons_side_by_side(selected_transcripts):
 # --- Streamlit UI with Enhanced Styling and Background ---
 
 st.set_page_config(page_title="Isoform Comparison Dashboard", layout="wide")
+st.markdown(
+    """
+    <style>
+    /* Fix layout shift when sidebar opens/closes */
+    .stApp {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        transition: padding 0.3s ease;
+    }
+
+    /* Optional: limit main content width and center it */
+    section.main > div {
+        max-width: 1200px;
+        margin: auto;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 
@@ -498,7 +517,7 @@ st.markdown(
             rgba(255,255,255,0.4),
             rgba(255,255,255,0.4)
             ),
-            url('https://github.com/div-bioinfo/isoform_app/blob/main/background.jpg?raw=true') no-repeat center center fixed;
+            url('https://i.postimg.cc/wx2XcrmW/3d-representation-dna-1.jpg') no-repeat center center fixed;
         background-size: cover;
         font-family: 'Poppins', sans-serif;
         color: #2C2C2C; /*deep grey for general text*/
@@ -866,7 +885,7 @@ if uploaded_files:
             }
 
             # 5. Plot
-            fig, ax = plt.subplots(figsize=(8, 5))
+            fig, ax = plt.subplots(figsize=(5, 3))
             fig.patch.set_facecolor('#f7f7f7')
             ax.set_facecolor('#f7f7f7')
 
@@ -907,19 +926,20 @@ if uploaded_files:
 
             # --- Display per-tool tables in tabs ---
             st.markdown("### 📋 Isoform Classification Summary (by Tool)")
-            st.info(f"📖 Reference used: `{ref_file.name}`")  
+            st.markdown(
+                f"""
+                <div style='background-color:#e3f2fd;padding:6px 10px;border-radius:8px;'>
+                    <p style='margin:0;color:#4A148C;font-size:14px;'>📖 Reference used: <b>{ref_file.name}</b></p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+                
+                
             tab_list = st.tabs(list(classified_tables.keys()))
             for i, tool in enumerate(classified_tables.keys()):
                 with tab_list[i]:
-                    st.markdown(
-                        f"""
-                        <div style='background-color:#f3e5f5;padding:10px;border-radius:10px;'>
-                            <h4 style='margin:0;color:#6A1B9A;'>🧪 Tool: <b>{tool}</b></h4>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-
+                    st.markdown(f"###🧪 Tool: {tool}")
                    
                     df_summary = classified_tables[tool]
 
@@ -1035,7 +1055,7 @@ if uploaded_files:
             summary_pivot_percent = summary_pivot.div(summary_pivot.sum(axis=1), axis=0) * 100
             
             # Plotting
-            fig, ax = plt.subplots(figsize=(8, 5))
+            fig, ax = plt.subplots(figsize=(5, 3))
             fig.patch.set_facecolor('#f7f7f7')
             ax.set_facecolor('#f7f7f7')
             bottom = None
