@@ -1060,7 +1060,7 @@ if uploaded_files:
             summary_pivot_percent = summary_pivot.div(summary_pivot.sum(axis=1), axis=0) * 100
             
             # Plotting
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(6, 3))
             fig.patch.set_facecolor('#f7f7f7')
             ax.set_facecolor('#f7f7f7')
             bottom = None
@@ -1096,7 +1096,7 @@ if uploaded_files:
                             ax.text(
                                 bar.get_x() + bar.get_width() / 2,
                                 bar.get_y() + height / 2,
-                                f"{height:.1f}%",
+                                f"{height:.0f}%",
                                 ha="center",
                                 va="center",
                                 fontsize=9,
@@ -1105,7 +1105,8 @@ if uploaded_files:
                     bottom += values
                     
             ax.set_xlim(-0.5, len(x_positions) - 0.5)
-            ax.set_ylabel("Percentage", fontsize=11)
+            ax.set_ylim(0, 100)
+            ax.set_ylabel("Percentage", fontsize=10)
             title = "Isoform Classification Against Reference" if (mode == "Compare against a Reference" and ref_file) else "Consensus vs Novel Isoforms per Tool"
             ax.set_title(title, fontsize=13, fontweight='bold')
             ax.set_ylim(0,100)
@@ -1122,7 +1123,10 @@ if uploaded_files:
 
             # Tight layout to prevent overlap
             fig.tight_layout()
-            st.pyplot(fig)              
+            col1, col2, col3 = st.columns([1, 5, 1])
+            with col2:
+   
+                st.pyplot(fig)              
 
 
             # --- Summary Table Section ---
