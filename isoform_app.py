@@ -696,8 +696,8 @@ with st.sidebar:
         — else it might make your comparisons confusing!"""
     )
     if uploaded_files and len(uploaded_files) > 4:
-    st.error("⚠️ Please upload **no more than 4** tool GTF files.")
-    st.stop() 
+        st.error("⚠️ Please upload **no more than 4** tool GTF files.")
+        st.stop() 
 
     ref_file = None
     ref_filename = ""
