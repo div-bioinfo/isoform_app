@@ -684,10 +684,10 @@ with st.sidebar:
     
     # Main tool files upload (always shown)
     uploaded_files = st.file_uploader(
-        "📁 Upload Tool Output Files (GTF/BED)",
+        "📁 Upload Tool Output Files (GTF)",
         type=["gtf"],
         accept_multiple_files=True,
-        help="""Upload isoform prediction outputs from different tools/sources. Upload limit 4.
+        help="""Upload isoform prediction outputs from different tools/sources. **Upload limit 4**.
         📝 **File Naming Tip**: (Trust Us, It Helps!) Name your files like:
         - `sample_flair.gtf`
         - `experiment_GENECODE.gtf`
@@ -695,6 +695,9 @@ with st.sidebar:
         the app will treat the tool name as the file name itself, so make sure the sourse name for file is present
         — else it might make your comparisons confusing!"""
     )
+    if uploaded_files and len(uploaded_files) > 4:
+    st.error("⚠️ Please upload **no more than 4** tool GTF files.")
+    st.stop() 
 
     ref_file = None
     ref_filename = ""
@@ -747,7 +750,7 @@ with st.sidebar:
         ref_file = st.file_uploader(
             "📁 Upload Reference Annotation (GTF)", 
             type=["gtf"],
-            help="Upload reference annotation from GENCODE/Ensembl or similar sources",
+            help="Upload reference annotation from GENCODE/Ensembl or similar sources. 1 file at a time",
             key='reference_file'
         )
         if ref_file:
