@@ -786,9 +786,9 @@ This app lets you:
 <div class='section-heading'>👩‍💻 Author</div>
 
 Built with  🧠,🐍,and a little caffeine by **Divya**,
-an M.Sc. Bioinformatics student passionate about transcriptomics,
-long read sequencing, and making complex data beautiful and useful.
-Feedback and ideas are always welcome!
+an M.Sc. Bioinformatics student,
+Bioinformatics centre, SPPU,
+GeneSpectrum Life Sciences LLP.
 </div>
 """, unsafe_allow_html=True)
 
@@ -944,7 +944,7 @@ if uploaded_files:
             tab_list = st.tabs(list(classified_tables.keys()))
             for i, tool in enumerate(classified_tables.keys()):
                 with tab_list[i]:
-                    st.markdown(f"###🧪 Tool: {tool}")
+                    st.markdown(f"##🧪 Tool: {tool}")
                    
                     df_summary = classified_tables[tool]
 
